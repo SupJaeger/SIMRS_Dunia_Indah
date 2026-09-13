@@ -2,8 +2,10 @@
 
 import { Bell, ChevronDown, LogOut, User } from "lucide-react";
 import Image from "next/image";
+import { useRole, type Role } from "@/app/Context/RoleContext";
 
 export default function Header() {
+  const { role } = useRole();
   return (
     <header className="h-16 w-full border-b border-gray-200 bg-white">
       <div className="flex h-full items-center justify-between px-6">
@@ -80,7 +82,7 @@ export default function Header() {
               </p>
 
               <p className="text-xs text-gray-500">
-                Dokter DPJP
+                {getRoleLabel(role)}
               </p>
             </div>
 
@@ -94,4 +96,20 @@ export default function Header() {
       </div>
     </header>
   );
+}
+
+function getRoleLabel(role: Role) {
+  const labels: Record<Role, string> = {
+    admin: "Administrator",
+    dokter: "Dokter DPJP",
+    perawat: "Perawat",
+    rekam_medis: "Petugas Rekam Medis",
+    admisi_inap: "Petugas Admisi Rawat Inap",
+    perawat_inap: "Perawat Rawat Inap",
+    billing_cashier: "Petugas Billing / Kasir",
+    insurance_verifier: "Verifikator Penjamin / Klaim",
+    billing_supervisor: "Supervisor Billing / Keuangan",
+  };
+
+  return labels[role];
 }

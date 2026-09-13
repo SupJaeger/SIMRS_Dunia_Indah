@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState } from "react";
 
-type Role =
+export type Role =
   | "admin"
   | "dokter"
   | "perawat"
@@ -21,7 +21,7 @@ type RoleContextType = {
 const RoleContext = createContext<RoleContextType | undefined>(undefined);
 
 export function RoleProvider({ children }: { children: React.ReactNode }) {
-  const [role, setRole] = useState<Role>("admin");
+  const [role, setRole] = useState<Role>("perawat"); // Ganti dengan role pengguna yang sesuai
 
   return (
     <RoleContext.Provider value={{ role, setRole }}>
