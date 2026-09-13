@@ -12,7 +12,7 @@ export default function KunjunganPage() {
       <Header />
 
       <div className="flex">
-        <Sidebar role={role} />
+        <Sidebar />
 
         <main className="flex-1 p-6">
           <PageHeader

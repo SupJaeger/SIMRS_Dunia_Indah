@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import {RoleProvider} from "./Context/RoleContext";
 
 export const metadata: Metadata = {
   title: "SIMRS Dunia Indah",
@@ -13,7 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body>{children}</body>
+      <body>
+        <RoleProvider>
+          {children}
+        </RoleProvider>
+      </body>
     </html>
   );
 }

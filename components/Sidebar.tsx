@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRole } from "@/app/Context/RoleContext";
 
 import {
   LayoutDashboard,
@@ -20,6 +21,7 @@ import {
 } from "lucide-react";
 
 type Role =
+  | "admin"
   | "dokter"
   | "perawat"
   | "rekam_medis"
@@ -35,7 +37,7 @@ type MenuItem = {
   icon: React.ElementType;
 };
 
-const menuByRole: Record<Role, MenuItem[]> = {
+const baseMenuByRole = {
   dokter: [
     {
       label: "Dashboard",
@@ -266,12 +268,20 @@ const menuByRole: Record<Role, MenuItem[]> = {
   ],
 };
 
-type SidebarProps = {
-  role: Role;
+const menuByRole: Record<Role, MenuItem[]> = {
+  ...baseMenuByRole,
+
+  admin: Object.values(baseMenuByRole)
+    .flat()
+    .filter(
+      (item, index, self) =>
+        index === self.findIndex((menu) => menu.href === item.href)
+    ),
 };
 
-export default function Sidebar({ role }: SidebarProps) {
+export default function Sidebar() {
   const pathname = usePathname();
+  const { role } = useRole();
 
   const menus = menuByRole[role];
 
@@ -334,6 +344,7 @@ export default function Sidebar({ role }: SidebarProps) {
 
 function getRoleLabel(role: Role) {
   const labels: Record<Role, string> = {
+    admin: "Administrator",
     dokter: "Dokter DPJP",
     perawat: "Perawat",
     rekam_medis: "Petugas Rekam Medis",
