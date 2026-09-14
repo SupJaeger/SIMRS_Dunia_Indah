@@ -3,13 +3,10 @@ import Sidebar from "@/components/Sidebar";
 import PageHeader from "@/components/PageHeader";
 import StatCard from "@/components/StatCard";
 import VisitTable from "@/components/VisitTable";
-import { RoleProvider } from "./Context/RoleContext";
 
 export default function Home() {
-  //const role = "admin"; // Ganti dengan role pengguna yang sesuai
 
   return (
-    <RoleProvider>
       <div className="min-h-screen bg-gray-50">
         <Header />
 
@@ -48,6 +45,5 @@ export default function Home() {
           </main>
         </div>
       </div>
-    </RoleProvider>
   );
 }

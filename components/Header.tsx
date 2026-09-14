@@ -82,7 +82,7 @@ export default function Header() {
               </p>
 
               <p className="text-xs text-gray-500">
-                {getRoleLabel(role)}
+                {role ? getRoleLabel(role) : "Belum login"}
               </p>
             </div>
 

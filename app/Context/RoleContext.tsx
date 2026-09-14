@@ -14,14 +14,16 @@ export type Role =
   | "billing_supervisor";
 
 type RoleContextType = {
-  role: Role;
+  role: Role | null;
   setRole: (role: Role) => void;
 };
 
 const RoleContext = createContext<RoleContextType | undefined>(undefined);
 
 export function RoleProvider({ children }: { children: React.ReactNode }) {
-  const [role, setRole] = useState<Role>("perawat"); // Ganti dengan role pengguna yang sesuai
+  const [role, setRole] = useState<Role | null>(null); 
+
+  console.log("RoleContext:", role);
 
   return (
     <RoleContext.Provider value={{ role, setRole }}>

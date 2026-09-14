@@ -283,7 +283,11 @@ export default function Sidebar() {
   const pathname = usePathname();
   const { role } = useRole();
 
-  const menus = menuByRole[role];
+  if (!role) {
+    return null;
+  }
+
+const menus = menuByRole[role];
 
   return (
     <aside className="flex min-h-[calc(100vh-4rem)] w-64 flex-col border-r border-gray-200 bg-white">
