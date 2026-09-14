@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRole } from "@/app/Context/RoleContext";
+import { useRole, type Role } from "@/app/Context/RoleContext";
 
 import {
   LayoutDashboard,
@@ -17,19 +17,7 @@ import {
   ShieldCheck,
   CreditCard,
   FileCheck,
-  LogOut,
 } from "lucide-react";
-
-type Role =
-  | "admin"
-  | "dokter"
-  | "perawat"
-  | "rekam_medis"
-  | "admisi_inap"
-  | "perawat_inap"
-  | "billing_cashier"
-  | "insurance_verifier"
-  | "billing_supervisor";
 
 type MenuItem = {
   label: string;
@@ -37,7 +25,7 @@ type MenuItem = {
   icon: React.ElementType;
 };
 
-const baseMenuByRole = {
+const baseMenuByRole: Omit<Record<Role, MenuItem[]>, "admin"> = {
   dokter: [
     {
       label: "Dashboard",
@@ -53,11 +41,6 @@ const baseMenuByRole = {
       label: "Pemeriksaan Pasien",
       href: "/pemeriksaan",
       icon: Stethoscope,
-    },
-    {
-      label: "Rekam Medis",
-      href: "/emr",
-      icon: FileText,
     },
     {
       label: "Diagnosis ICD-10",
@@ -91,11 +74,6 @@ const baseMenuByRole = {
       label: "Asesmen Awal Keperawatan",
       href: "/keperawatan/asesmen",
       icon: HeartPulse,
-    },
-    {
-      label: "Rekam Medis",
-      href: "/emr",
-      icon: FileText,
     },
     {
       label: "Order Aktif",
