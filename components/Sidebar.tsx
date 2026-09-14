@@ -330,18 +330,6 @@ const menus = menuByRole[role];
           );
         })}
       </nav>
-
-      {/* Logout */}
-      <div className="border-t border-gray-200 p-4">
-        <button
-          type="button"
-          className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-gray-600 transition hover:bg-red-50 hover:text-red-600"
-        >
-          <LogOut size={19} strokeWidth={1.8} />
-
-          <span>Logout</span>
-        </button>
-      </div>
     </aside>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, type ReactNode } from "react";
 
 export type Role =
   | "admin"
@@ -15,18 +15,23 @@ export type Role =
 
 type RoleContextType = {
   role: Role | null;
-  setRole: (role: Role) => void;
+  setRole: (role: Role | null) => void;
+  logout: () => void;
 };
 
 const RoleContext = createContext<RoleContextType | undefined>(undefined);
 
-export function RoleProvider({ children }: { children: React.ReactNode }) {
-  const [role, setRole] = useState<Role | null>(null); 
+export function RoleProvider({ children }: { children: ReactNode }) {
+  const [role, setRole] = useState<Role | null>(null);
+
+  const logout = () => {
+    setRole(null);
+  };
 
   console.log("RoleContext:", role);
 
   return (
-    <RoleContext.Provider value={{ role, setRole }}>
+    <RoleContext.Provider value={{ role, setRole, logout }}>
       {children}
     </RoleContext.Provider>
   );
