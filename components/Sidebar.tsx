@@ -77,7 +77,7 @@ const baseMenuByRole: Omit<Record<Role, MenuItem[]>, "admin"> = {
     },
     {
       label: "Order Aktif",
-      href: "/order",
+      href: "/keperawatan/order",
       icon: ClipboardList,
     },
   ],
