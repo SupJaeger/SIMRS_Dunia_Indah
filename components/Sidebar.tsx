@@ -289,7 +289,7 @@ const menus = menuByRole[role];
           const isActive =
             item.href === "/"
               ? pathname === "/"
-              : pathname.startsWith(item.href);
+              : pathname === item.href;
 
           return (
             <Link
